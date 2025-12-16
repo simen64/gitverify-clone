@@ -7,6 +7,10 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
   --mount=type=cache,target=/go/pkg \
   make build
 
+WORKDIR /tmp/gitverify-src
+RUN git clone https://github.com/supply-chain-tools/gitverify.git . && \
+  GOOS=$TARGETOS GOARCH=$TARGETARCH GO111MODULE=on CGO_ENABLED=0 go build -o gitverify ./cmd/gitverify
+
 FROM alpine:3.23
 ARG HOME=/app
 
@@ -16,4 +20,5 @@ ENV PLUGIN_HOME=$HOME
 RUN mkdir -p $HOME && apk add --no-cache ca-certificates git openssh curl git-lfs
 
 COPY --from=build src/release/plugin-git /bin/
+COPY --from=build /tmp/gitverify-src/gitverify /bin/
 ENTRYPOINT ["/bin/plugin-git"]
