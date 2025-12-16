@@ -173,6 +173,14 @@ func (p Plugin) Exec() error {
 		}
 	}
 
+	err = verifyCommit(p.Pipeline.Path, p.Pipeline.Commit, p.Config.Branch)
+	if err != nil {
+		fmt.Println("gitverify error:", err)
+		return err
+	} else {
+		fmt.Println("Gitverify exited successfully")
+	}
+
 	return nil
 }
 
