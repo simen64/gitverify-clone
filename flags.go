@@ -58,11 +58,6 @@ var globalFlags = []cli.Flag{
 		Usage:   "netrc password",
 		Sources: cli.EnvVars("CI_NETRC_PASSWORD"),
 	},
-	&cli.IntFlag{
-		Name:    "depth",
-		Usage:   "clone depth",
-		Sources: cli.EnvVars("PLUGIN_DEPTH"),
-	},
 	&cli.BoolFlag{
 		Name:    "recursive",
 		Usage:   "clone submodules",
@@ -126,12 +121,6 @@ var globalFlags = []cli.Flag{
 		Name:    "branch",
 		Usage:   "Change branch name",
 		Sources: cli.EnvVars("PLUGIN_BRANCH", "CI_COMMIT_BRANCH", "CI_REPO_DEFAULT_BRANCH"),
-	},
-	&cli.BoolFlag{
-		Name:    "partial",
-		Usage:   "Enable/Disable Partial clone",
-		Sources: cli.EnvVars("PLUGIN_PARTIAL"),
-		Value:   true,
 	},
 	&cli.StringFlag{
 		Name:    "home",

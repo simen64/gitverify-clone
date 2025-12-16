@@ -18,15 +18,9 @@ func SetDefaults(c *cli.Command, p *Plugin) {
 		fmt.Println("WARNING: ignore partial clone as tags are fetched")
 	}
 
-	if p.Config.Tags && p.Config.Partial {
-		// if tag fetching is enabled per event or setting, disable partial clone
-		p.Config.Partial = false
-	}
+	p.Config.Partial = false
 
-	if p.Config.Partial {
-		p.Config.Depth = 1
-		p.Config.filter = "tree:0"
-	}
+	p.Config.Depth = 0
 
 	if len(p.Config.Home) == 0 {
 		// fallback to system home
