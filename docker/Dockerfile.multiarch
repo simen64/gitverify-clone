@@ -9,7 +9,7 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
 
 WORKDIR /tmp/gitverify-src
 RUN git clone https://github.com/supply-chain-tools/gitverify.git . && \
-  GOOS=$TARGETOS GOARCH=$TARGETARCH GO111MODULE=on CGO_ENABLED=0 go build -o gitverify ./cmd/gitverify
+  GOOS=$TARGETOS GOARCH=$TARGETARCH GO111MODULE=on CGO_ENABLED=0 go build -trimpath -o gitverify ./cmd/gitverify
 
 FROM alpine:3.23
 ARG HOME=/app
