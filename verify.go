@@ -7,7 +7,7 @@ import (
 )
 
 func verifyCommit(repoPath, commit, branch string) error {
-	args := []string{"--config-file", "gitverify.json"}
+	args := []string{"--config-file", "/etc/gitverify.json"}
 
 	fmt.Println("branch = " + branch)
 	args = append(args, "--repository-uri=git+"+os.Getenv("CI_REPO_CLONE_URL"))
